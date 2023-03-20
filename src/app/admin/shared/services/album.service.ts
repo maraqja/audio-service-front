@@ -15,6 +15,10 @@ export class AlbumService {
     return this.http.get<Album[]>(`${environment.apiUrl}/album`)
   }
 
+  getById(id: string): Observable<Album> {
+    return this.http.get<Album>(`${environment.apiUrl}/album/${id}`)
+  }
+
   create(album: Album): Observable<Album> {
     return this.http.post<Album>(`${environment.apiUrl}/album/create`, album)
     .pipe(map( (response) => {
@@ -23,6 +27,10 @@ export class AlbumService {
         id: response._id
       }
     }))
+  }
+
+  update(id: string, album: Album): Observable<Album> {
+    return this.http.put<Album>(`${environment.apiUrl}/album/${id}`, album)
   }
 
   remove(id: string): Observable<Album> {

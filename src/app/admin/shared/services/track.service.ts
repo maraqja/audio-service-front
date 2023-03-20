@@ -15,6 +15,10 @@ export class TrackService {
     return this.http.get<Track[]>(`${environment.apiUrl}/track`)
   }
 
+  getById(id: string): Observable<Track> {
+    return this.http.get<Track>(`${environment.apiUrl}/track/${id}`)
+  }
+
   create(track: Track): Observable<Track> {
     return this.http.post<Track>(`${environment.apiUrl}/track/create`, track)
     .pipe(map( (response) => {
@@ -23,6 +27,10 @@ export class TrackService {
         id: response._id
       }
     }))
+  }
+
+  update(id: string, track: Track): Observable<Track> {
+    return this.http.put<Track>(`${environment.apiUrl}/track/${id}`, track)
   }
 
   remove(id: string): Observable<Track> {

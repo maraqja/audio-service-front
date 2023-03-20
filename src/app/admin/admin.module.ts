@@ -13,6 +13,7 @@ import { AlbumDashboardComponent } from './components/album-dashboard/album-dash
 import { AddAlbumComponent } from './components/add-album/add-album.component';
 import { AddTrackComponent } from './components/add-track/add-track.component';
 import { EditArtistComponent } from './components/edit-artist/edit-artist.component';
+import { EditAlbumComponent } from './components/edit-album/edit-album.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EditArtistComponent } from './components/edit-artist/edit-artist.compon
     AlbumDashboardComponent,
     AddAlbumComponent,
     AddTrackComponent,
-    EditArtistComponent
+    EditArtistComponent,
+    EditAlbumComponent
   ],
   imports: [
     CommonModule,
