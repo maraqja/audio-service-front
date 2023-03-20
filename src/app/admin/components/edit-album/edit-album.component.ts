@@ -30,7 +30,7 @@ export class EditAlbumComponent {
 
   message: string = 'Замените необходимые данные'
 
-    changeImage = false
+  changeImage = false
 
   constructor(
         private albumService: AlbumService,
@@ -73,8 +73,6 @@ export class EditAlbumComponent {
     if (this.form.invalid) {
       return
     }
-    console.log(this.album.artists.map((artist) => {return artist._id}))
-    console.log(JSON.stringify(this.form.value.artists))
     if (
       this.form.value.title === this.album.title &&
       this.form.value.description === this.album.description &&
@@ -113,7 +111,6 @@ export class EditAlbumComponent {
           artists: this.form.value.artists
         }
         this.albumService.update(this.album._id as string, album).subscribe((album) => {
-          console.log(album)
           this.router.navigate(['/admin', 'albums'])
         })
       })

@@ -1,0 +1,100 @@
+<section class="text-gray-600 body-font relative">
+    <div class="container px-5 pb-24 mx-auto flex sm:flex-nowrap flex-wrap">
+        <div class="w-1/2 m-auto bg-white flex flex-col md:ml-auto md:py-8 mt-8 md:mt-0">
+            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Редактировать трек</h2>
+            <p class="leading-relaxed mb-5 text-gray-600">Post-ironic portland shabby chic echo park, banjo fashion axe
+            </p>
+
+            <div *ngIf="track; else loading">
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="relative mb-4">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Название *</label>
+                        <input type="text" id="name" name="name" formControlName="name"
+                            [ngClass]="{'border-red-500': form.get('name')?.touched && form.get('name')?.invalid}"
+                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+                            <small *ngIf="this.form.get('name')?.errors?.['required']" class="text-red-500">Введите
+                                название</small>
+                        </div>
+                    </div>
+                
+                    <div class="relative mb-4 text-gray-700">
+                        <label for="genre" class="leading-7 text-sm text-gray-600">Жанры *</label>
+                        <ng-select class="leading-8 " [items]="genres" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
+                            bindLabel="genre" formControlName="genre" placeholder="Выберите жанры" [(ngModel)]="selectedGenres">
+                        </ng-select>
+                        <div *ngIf="form.get('genre')?.touched && form.get('genre')?.invalid">
+                            <small *ngIf="this.form.get('genre')?.errors?.['required']" class="text-red-500">Выберите хотя
+                                бы один жанр</small>
+                        </div>
+                    </div>
+                
+                
+                    <div class="relative mb-4 text-gray-700">
+                        <label for="album" class="leading-7 text-sm text-gray-600">Альбом *</label>
+                        <ng-select class="leading-8 " [multiple]="false" [clearable]="false" appearance="outline" bindLabel="album"
+                            formControlName="album" placeholder="Выберите альбом" [(ngModel)]="selectedAlbum">
+                            <ng-option *ngFor="let album of albums" [value]="album._id">{{album.title}}</ng-option>
+                        </ng-select>
+                        <div *ngIf="form.get('album')?.touched && form.get('album')?.invalid">
+                            <small *ngIf="this.form.get('album')?.errors?.['required']" class="text-red-500">Выберите
+                                альбом</small>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                
+                    <!-- <div class="relative mb-4">
+                                    <label for="email" class="leading-7 text-sm text-gray-600">Жанры</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                </div>
+                                <div class="relative mb-4">
+                                    <label for="message" class="leading-7 text-sm text-gray-600">Описание</label>
+                                    <textarea id="message" name="message"
+                                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                </div> -->
+                    <div class="relative mb-4">
+                        <label for="file" class="leading-7 text-sm text-gray-600">Аудио *</label>
+                        <p class="leading-7 text-sm text-gray-600 my-1">Текущий загруженный файл</p>
+                        <audio class="mx-auto my-2" controls [src]="getAudio(track.file)"></audio>
+                        <app-file-upload [fileType]="'AUDIO'" formControlName="file"></app-file-upload>
+                        <div *ngIf="form.get('file')?.dirty && form.get('file')?.invalid">
+                            <small *ngIf="this.form.get('file')?.errors?.['required']" class="text-red-500">Необходимо
+                                загрузить файл</small>
+                            <small *ngIf="this.form.get('file')?.errors?.['requiredFileType']" class="text-red-500">Неверный
+                                формат файла (AUDIO)</small>
+                        </div>
+                    </div>
+                
+                
+                    <div class="relative mb-4">
+                        <label for="bpm" class="leading-7 text-sm text-gray-600">BPM (optional)</label>
+                        <input type="number" id="bpm" name="bpm" formControlName="bpm"
+                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="key" class="leading-7 text-sm text-gray-600">Тональность (optional)</label>
+                        <input type="text" id="key" name="key" formControlName="key"
+                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                
+                
+                    <button type="submit" [disabled]="form.invalid"
+                        [ngClass]="{'bg-neutral-400': form.invalid, 'hover:bg-neutral-400': form.invalid}"
+                        class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Редактировать</button>
+                    <p class="text-xs text-gray-500 mt-3" [ngClass]="{'text-red-500': message === 'Ничего не изменилось'}">{{message}}</p>
+                </form>
+            </div>
+
+            <ng-template #loading>
+                <p>Loading...</p>
+            </ng-template>
+
+
+
+        </div>
+    </div>
+</section>

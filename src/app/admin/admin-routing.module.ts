@@ -9,6 +9,7 @@ import { AlbumDashboardComponent } from "./components/album-dashboard/album-dash
 import { ArtistsDashboardComponent } from "./components/artists-dashboard/artists-dashboard.component";
 import { EditAlbumComponent } from "./components/edit-album/edit-album.component";
 import { EditArtistComponent } from "./components/edit-artist/edit-artist.component";
+import { EditTrackComponent } from "./components/edit-track/edit-track.component";
 import { TracksDashboardComponent } from "./components/tracks-dashboard/tracks-dashboard.component";
 import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-layout.component";
 
@@ -22,7 +23,8 @@ const routes: Routes = [{
       {path: 'albums/add', component: AddAlbumComponent},
       {path: 'albums/:id/edit', component: EditAlbumComponent},
       {path: 'tracks', component: TracksDashboardComponent},
-      {path: 'tracks/add', component: AddTrackComponent}
+      {path: 'tracks/add', component: AddTrackComponent},
+      {path: 'tracks/:id/edit', component: EditTrackComponent}
     ]
 }];
 

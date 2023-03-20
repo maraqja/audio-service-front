@@ -35,7 +35,6 @@ export class AddTrackComponent {
   ngOnInit(){
       this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
-      release_date: new FormControl(null, [Validators.required]),
       file: new FormControl(null, [Validators.required, requiredFileType('audio')]),
       genre: new FormControl(null, [Validators.required]),
       album: new FormControl(null, [Validators.required]),
@@ -65,7 +64,6 @@ export class AddTrackComponent {
         name: this.form.value.name,
         duration: audioDuration,
         file: res.url,
-        release_date: this.form.value.release_date,
         genre: this.form.value.genre,
         album: this.form.value.album,
         key: this.form.value.key ? this.form.value.key : 'unknown',

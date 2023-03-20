@@ -4,10 +4,9 @@ export interface Track{
     _id?: string;
     name: string;
     duration: number;
-    release_date: string;
     file: string;
     genre: string[];
-    album: Album [];
+    album: Album;
     key?: string;
     bpm?: number;
 }
