@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AlbumDashboardComponent } from './components/album-dashboard/album-dashboard.component';
 import { AddAlbumComponent } from './components/add-album/add-album.component';
 import { AddTrackComponent } from './components/add-track/add-track.component';
+import { EditArtistComponent } from './components/edit-artist/edit-artist.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AddTrackComponent } from './components/add-track/add-track.component';
     FileUploadComponent,
     AlbumDashboardComponent,
     AddAlbumComponent,
-    AddTrackComponent
+    AddTrackComponent,
+    EditArtistComponent
   ],
   imports: [
     CommonModule,

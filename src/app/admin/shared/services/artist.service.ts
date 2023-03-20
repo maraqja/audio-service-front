@@ -15,6 +15,10 @@ export class ArtistService {
     return this.http.get<Artist[]>(`${environment.apiUrl}/artist`)
   }
 
+  getById(id: string): Observable<Artist> {
+    return this.http.get<Artist>(`${environment.apiUrl}/artist/${id}`)
+  }
+
   create(artist: Artist): Observable<Artist> {
     return this.http.post<Artist>(`${environment.apiUrl}/artist/create`, artist)
     .pipe(map( (response) => {
@@ -23,6 +27,10 @@ export class ArtistService {
         id: response._id
       }
     }))
+  }
+
+  update(id: string, artist: Artist): Observable<Artist> {
+    return this.http.put<Artist>(`${environment.apiUrl}/artist/${id}`, artist)
   }
 
   remove(id: string) {

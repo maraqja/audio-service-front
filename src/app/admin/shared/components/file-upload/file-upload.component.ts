@@ -15,6 +15,7 @@ export class FileUploadComponent {
 
   @Input() fileType: string = 'any'
 
+
   onChange!: Function;
   file: File | null = null;
 
@@ -26,7 +27,10 @@ export class FileUploadComponent {
   console.log(this.file)
   }
 
-  constructor( private host: ElementRef<HTMLInputElement> ) {
+  constructor(
+    private host: ElementRef<HTMLInputElement>
+    ) {
+      
   }
 
   writeValue( value: null ) {
