@@ -1,0 +1,22 @@
+export enum EGenre {
+    'Hip-Hop/Rap',
+    'Lo-Fi',
+    'Pop',
+    'R&B/soul',
+    'Dance',
+    'Alternative',
+    'Rock',
+    'Blues',
+    'African', 
+    'Arabic',
+    'Asian',
+    'Brazilian',
+    'Country',
+    'Electronic',
+    'Indian',
+    'Jazz',
+    'Latin',
+    'Metal',
+    'Reggae',
+    'Other'
+}
