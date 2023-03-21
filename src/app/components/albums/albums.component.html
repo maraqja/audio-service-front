@@ -14,28 +14,29 @@
 
         <div class="relative mr-4 w-full text-left">
             <label for="hero-field" class="leading-7 text-sm text-gray-600">Поиск</label>
-            <input type="text" id="hero-field" name="hero-field" placeholder="Введите название альбома..."
+            <input type="text" id="hero-field" name="hero-field" placeholder="Введите название альбома или имя исполнителя..." [(ngModel)]="search"
                 class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div>
         <p class="text-sm mt-2 text-gray-500 mb-8 w-full">Чето</p>
 
 
 
-        <div class="flex flex-wrap -m-4">
+        <div *ngIf="albums" class="flex flex-wrap -m-4">
             
 
 
-            <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div *ngFor="let album of albums |  searchAlbums: search;" class="xl:w-1/4 md:w-1/2 p-4">
+                
                 <div class="bg-gray-100 p-6 rounded-lg">
-                    <a [routerLink]="['/albums', 'album-id']">
-                        <img class="h-96 rounded w-full object-cover object-center mb-6"
-                            src="https://i.ytimg.com/vi/eH_TOrddnZ0/maxresdefault.jpg" alt="content">
+                    <a [routerLink]="['/albums', album._id]">
+                        <img class="h-80 rounded w-full object-cover object-center mb-6"
+                            [src]="getImgSrc(album.image)" alt="content">
                     </a>
-                    <h3 class="tracking-widest text-xs font-medium title-font">[genres]</h3>
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Album Name</h2>
-                    <p class="leading-relaxed text-base">Описание альбома</p>
+                    <h3 class="tracking-widest text-xs font-medium title-font"> {{ album.genre }} </h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{album.title }} </h2>
+                    <p class="leading-relaxed text-base truncate"> {{ album.description }} </p>
                     <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                        <a [routerLink]="['/albums', 'album-id']" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
+                        <a [routerLink]="['/albums', album._id]" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
                             <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14"></path>
@@ -48,169 +49,30 @@
                                 stroke-linejoin="round" viewBox="0 0 24 24">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
-                            </svg>1.2K
+                            </svg> 1.2k
                         </span>
 
                         <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                            <svg  class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round" viewBox="0 0 24 24">
                                 <path
                                     d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z">
                                 </path>
-                            </svg>6
+                            </svg> {{album.tracks.length}}
                         </span>
                     </div>
-                    <a class="inline-flex items-center">
-                        <img alt="blog" src="https://note-store.ru/upload/iblock/60f/NOT-_-Life.jpg"
-                            class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                        <span class="flex-grow flex flex-col pl-4">
-                            <span class="title-font font-medium text-gray-900">Artist Name</span>
-                            <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
 
-
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg">
-                    <a [routerLink]="['/albums', 'album-id']">
-                        <img class="h-96 rounded w-full object-cover object-center mb-6"
-                            src="https://i.ytimg.com/vi/eH_TOrddnZ0/maxresdefault.jpg" alt="content">
-                    </a>
-                    <h3 class="tracking-widest text-xs font-medium title-font">[genres]</h3>
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Album Name</h2>
-                    <p class="leading-relaxed text-base">Описание альбома</p>
-                    <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                        <a [routerLink]="['/albums', 'album-id']" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
-                            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                            </svg>
+                    <div *ngFor="let artist of album.artists">
+                        <a class="inline-flex items-center">
+                            <img alt="blog" [src]="getImgSrc(artist.image)"
+                                class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <span class="flex-grow flex flex-col pl-4">
+                                <span class="title-font font-medium text-gray-900"> {{artist.name}} </span>
+                                <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
+                            </span>
                         </a>
-                        <span
-                            class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>1.2K
-                        </span>
-
-                        <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path
-                                    d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z">
-                                </path>
-                            </svg>6
-                        </span>
                     </div>
-                    <a class="inline-flex items-center">
-                        <img alt="blog" src="https://note-store.ru/upload/iblock/60f/NOT-_-Life.jpg"
-                            class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                        <span class="flex-grow flex flex-col pl-4">
-                            <span class="title-font font-medium text-gray-900">Artist Name</span>
-                            <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-
-
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg">
-                    <a [routerLink]="['/albums', 'album-id']">
-                        <img class="h-96 rounded w-full object-cover object-center mb-6"
-                            src="https://i.ytimg.com/vi/eH_TOrddnZ0/maxresdefault.jpg" alt="content">
-                    </a>
-                    <h3 class="tracking-widest text-xs font-medium title-font">[genres]</h3>
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Album Name</h2>
-                    <p class="leading-relaxed text-base">Описание альбома</p>
-                    <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                        <a [routerLink]="['/albums', 'album-id']" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
-                            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                        <span
-                            class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>1.2K
-                        </span>
-
-                        <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path
-                                    d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z">
-                                </path>
-                            </svg>6
-                        </span>
-                    </div>
-                    <a class="inline-flex items-center">
-                        <img alt="blog" src="https://note-store.ru/upload/iblock/60f/NOT-_-Life.jpg"
-                            class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                        <span class="flex-grow flex flex-col pl-4">
-                            <span class="title-font font-medium text-gray-900">Artist Name</span>
-                            <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-
-
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg">
-                    <a [routerLink]="['/albums', 'album-id']">
-                        <img class="h-96 rounded w-full object-cover object-center mb-6"
-                            src="https://i.ytimg.com/vi/eH_TOrddnZ0/maxresdefault.jpg" alt="content">
-                    </a>
-                    <h3 class="tracking-widest text-xs font-medium title-font">[genres]</h3>
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Album Name</h2>
-                    <p class="leading-relaxed text-base">Описание альбома</p>
-                    <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                        <a [routerLink]="['/albums', 'album-id']" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
-                            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                        <span
-                            class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>1.2K
-                        </span>
-
-                        <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path
-                                    d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z">
-                                </path>
-                            </svg>6
-                        </span>
-                    </div>
-                    <a class="inline-flex items-center">
-                        <img alt="blog" src="https://note-store.ru/upload/iblock/60f/NOT-_-Life.jpg"
-                            class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                        <span class="flex-grow flex flex-col pl-4">
-                            <span class="title-font font-medium text-gray-900">Artist Name</span>
-                            <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
-                        </span>
-                    </a>
+                    
                 </div>
             </div>
             
@@ -225,6 +87,9 @@
 
     </div>
 </section>
+
+
+
 
 
 

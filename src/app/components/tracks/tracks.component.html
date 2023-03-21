@@ -14,23 +14,26 @@
 
         <div class="relative mr-4 w-full text-left">
             <label for="hero-field" class="leading-7 text-sm text-gray-600">Поиск</label>
-            <input type="text" id="hero-field" name="hero-field" placeholder="Введите название трека/альбома или имя исполнителя..."
+            <input type="text" id="hero-field" name="hero-field" placeholder="Введите название трека/альбома или имя исполнителя..." [(ngModel)]="search"
 
                 class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div>
         <p class="text-sm mt-2 text-gray-500 mb-2 w-full">Чето</p>
 
-        <button class="bg-gray-100 py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none border-2 mb-2 "
-            [ngClass]="{'border-indigo-500': selectedTrack == 1}">
+
+
+
+        <button *ngFor="let track of tracks | searchTracks: search" class="bg-gray-100 py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none border-2 mb-2 "
+            [ngClass]="{'border-indigo-500': selectedTrack === track._id}">
             <div class="flex ">
-                <button (click)="togglePlay(1)">
-                    <svg *ngIf="selectedTrack != 1 || (selectedTrack == 1 && !isPlayed)" xmlns="http://www.w3.org/2000/svg"
+                <button (click)="togglePlay(track._id)">
+                    <svg *ngIf="selectedTrack != track._id || (selectedTrack == track._id && !isPlayed)" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6 fill-gray-900 my-auto">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
                     </svg>
         
-                    <svg *ngIf="selectedTrack == 1 && isPlayed" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    <svg *ngIf="selectedTrack == track._id && isPlayed" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="5.5" stroke="black" class="w-6 h-6 fill-gray-900 my-auto">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                     </svg>
@@ -38,8 +41,11 @@
         
         
                 <span class="ml-4 flex items-start flex-col leading-none">
-                    <span class="text-xs text-gray-600 mb-1">Artist name</span>
-                    <span class="title-font font-medium">Track name</span>
+                    <span class="text-sm text-gray-600 mb-1 font-normal"> 
+                        {{ getArtistsNames(track.album.artists)}} 
+                        <span class="text-xs font-thin "> [{{track.album.title}}] </span>
+                    </span>
+                    <span class="title-font font-medium"> {{ track.name }} </span>
                 </span>
                 <div class="ml-auto inline-flex items-center justify-center">
                     <span>2:15</span>
@@ -55,42 +61,6 @@
             </div>
         </button>
         
-        
-        
-        <button class="bg-gray-100 py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none border-2 mb-2"
-            [ngClass]="{'border-indigo-500': selectedTrack == 2}">
-            <div class="flex ">
-                <button (click)="togglePlay(2)">
-                    <svg *ngIf="selectedTrack != 2 || (selectedTrack == 2 && !isPlayed)" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6 fill-gray-900 my-auto">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-                    </svg>
-        
-                    <svg *ngIf="selectedTrack == 2 && isPlayed" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="5.5" stroke="black" class="w-6 h-6 fill-gray-900 my-auto">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-                    </svg>
-                </button>
-        
-        
-                <span class="ml-4 flex items-start flex-col leading-none">
-                    <span class="text-xs text-gray-600 mb-1">Artist name</span>
-                    <span class="title-font font-medium">Track name</span>
-                </span>
-                <div class="ml-auto inline-flex items-center justify-center">
-                    <span>2:15</span>
-                </div>
-                <button
-                    class="rounded-full w-10 h-10  p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-white ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-        
-                </button>
-            </div>
-        </button>
 
 
 

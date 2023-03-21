@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Track } from 'src/app/shared/interfaces/track.interface';
@@ -17,6 +17,12 @@ export class TrackService {
 
   getById(id: string): Observable<Track> {
     return this.http.get<Track>(`${environment.apiUrl}/track/${id}`)
+  }
+
+  getTracksByAlbumId(album_id: string): Observable<any[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('album_id',album_id);
+    return this.http.get<Track[]>(`${environment.apiUrl}/track`, {params: queryParams})
   }
 
   create(track: Track): Observable<Track> {
