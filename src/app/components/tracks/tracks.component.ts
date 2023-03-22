@@ -11,9 +11,6 @@ import { Artist } from 'src/app/shared/interfaces/artist.interface';
 })
 export class TracksComponent {
 
-  isPlayed = false;
-  selectedTrack = 0;
-
 
   search = ''
   tracks: any[] = [] // any из-за ошибки в шаблоне при доступе к полю .artists.name (хз как кастануть в шаблоне)
@@ -29,39 +26,11 @@ export class TracksComponent {
     return artists.map(artist => artist.name)
   }
 
-  togglePlay(id: any) {
-    if (this.selectedTrack != id) {
-      this.isPlayed = false
-    }
-    this.selectedTrack = id
-    this.isPlayed = !this.isPlayed
-    console.log(this.isPlayed, this.selectedTrack)
-  }
-
-
-
-
   ngOnInit() {
     this.aSub = this.trackService.getAll().subscribe( (tracks) => {
       this.tracks = tracks
-      console.log(tracks)
+      // console.log(tracks)
     })
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  getAudio(filePath: string) {
-    return this.fileService.getStaticSrc(filePath)
   }
 
   ngOnDestroy() {

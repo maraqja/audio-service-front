@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { TrackComponent } from './shared/components/track/track.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
     AlbumsComponent,
     AlbumPageComponent,
     AudioPlayerComponent,
+    TrackComponent
   ],
   imports: [
     BrowserModule,

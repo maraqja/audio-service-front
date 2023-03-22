@@ -2,12 +2,13 @@ import { NgModule } from "@angular/core";
 import { SearchArtistsPipe } from './pipes/search-artists.pipe';
 import { SearchAlbumsPipe } from './pipes/search-albums.pipe';
 import { SearchTracksPipe } from './pipes/search-tracks.pipe';
+import { TrackComponent } from './components/track/track.component';
 
 @NgModule({
     declarations: [
       SearchArtistsPipe,
       SearchAlbumsPipe,
-      SearchTracksPipe
+      SearchTracksPipe,
     ],
     imports: [],
     exports: [SearchArtistsPipe, SearchAlbumsPipe, SearchTracksPipe],

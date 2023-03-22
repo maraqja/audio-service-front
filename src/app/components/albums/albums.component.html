@@ -21,11 +21,11 @@
 
 
 
-        <div *ngIf="albums" class="flex flex-wrap -m-4">
+        <div *ngIf="albums" class="flex flex-wrap -m-4 justify-center">
             
 
 
-            <div *ngFor="let album of albums |  searchAlbums: search;" class="xl:w-1/4 md:w-1/2 p-4">
+            <div *ngFor="let album of albums |  searchAlbums: search;" class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
                 
                 <div class="bg-gray-100 p-6 rounded-lg">
                     <a [routerLink]="['/albums', album._id]">

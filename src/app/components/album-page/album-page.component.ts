@@ -13,9 +13,6 @@ import { Artist } from 'src/app/shared/interfaces/artist.interface';
   styleUrls: ['./album-page.component.css']
 })
 export class AlbumPageComponent {
-  isPlayed = false;
-  selectedTrack = 0;
-
 
   album: any // any, т.к. это расширенная версия альбома с треками (конечно лучше бы для этого отдельный интерфейс)
 
@@ -34,27 +31,13 @@ export class AlbumPageComponent {
     }))
     .subscribe((album: any) => {
       this.album = album[0] // т.к. с бека в виде массива приходит
-      console.log(this.album) 
+      // console.log(this.album) 
     })
   }
 
 
   getImage(filePath: string) {
     return this.fileService.getStaticSrc(filePath)
-  }
-
-  getArtistsNames(artists: Artist[]) {
-    return artists.map(artist => artist.name)
-  }
-
-
-  togglePlay(id: any) {
-    if (this.selectedTrack != id) {
-      this.isPlayed = false
-    }
-    this.selectedTrack = id
-    this.isPlayed = !this.isPlayed
-    console.log(this.isPlayed, this.selectedTrack)
   }
 
 }

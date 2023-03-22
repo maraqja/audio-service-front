@@ -21,10 +21,10 @@
 
 
 
-        <div class="flex flex-wrap -m-4">
+        <div class="flex flex-wrap -m-4 justify-center">
 
 
-            <div *ngFor="let artist of artists | searchArtists: search;" class="xl:w-1/4 md:w-1/2 p-4">
+            <div *ngFor="let artist of artists | searchArtists: search;" class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
                 <div class="bg-gray-100 p-6 rounded-lg">
                     <a routerLink="/albums" [queryParams]="{artist: artist.name }">
                         <img class="h-80 rounded w-full object-cover object-center mb-6"
