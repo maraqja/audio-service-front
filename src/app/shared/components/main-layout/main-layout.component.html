@@ -2,6 +2,10 @@
 <header class="text-gray-600 body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+
+
+
+
             <a href="" routerLink="artists" class="mr-5 hover:text-indigo-500">Исполнители</a>
             <a href="" routerLink="albums" class="mr-5 hover:text-indigo-500">Альбомы</a>
             <a href="" routerLink="tracks" class="mr-5 hover:text-indigo-500">Треки</a>
@@ -17,28 +21,29 @@
             <span class="ml-3 text-xl">Audio Service</span>
         </a>
         <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-            <a *ngIf="isAdmin" routerLink="admin" href="" class="text-red-500 hover:text-red-800 mr-5 " >Admin</a>
-            <a  *ngIf="isAuth" href="" class="hover:text-indigo-500 mr-5 ">Моя библиотека</a>
-            <a *ngIf="isAuth" href="" class="hover:text-indigo-500 mr-5">Рекомендации</a>
+            <!-- <a *ngIf="isAdmin" routerLink="admin" href="" class="text-red-500 hover:text-red-800 mr-5 " >Admin</a> -->
+            <!-- <a  *ngIf="isAuth" href="" class="hover:text-indigo-500 mr-5 ">Моя библиотека</a>
+            <a *ngIf="isAuth" href="" class="hover:text-indigo-500 mr-5">Рекомендации</a> -->
             
 
-            <!-- <div class="relative group">
+            <div *ngIf="isAuth" class="relative group text-base ">
                 <div
-                    class="flex items-center cursor-pointer text-sm text-blue border border-white border-b-0  group-hover:border-grey-light rounded-t-lg px-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/%24NOT%2C_I_LEFT_MY_RICHARD_MILLIE.png/1200px-%24NOT%2C_I_LEFT_MY_RICHARD_MILLIE.png" class="rounded-full object-cover object-center w-10 h-10 mr-2">
-                    <p class="mb-1">Username</p>
-                    
-
+                    class="flex items-center cursor-pointer text-sm text-blue border border-white border-b-0  group-hover:border-grey-light rounded-t-lg px-2 hover:text-indigo-500">
+                    <p class="text-lg text-gray-600 font-semibold">Аккаунт</p>
 
                 </div>
-                <div
+                <div 
                     class="items-center absolute border border-t-0 rounded-b-lg p-1 bg-white invisible group-hover:visible w-fit right-0">
                     <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 whitespace-nowrap">Моя библиотека</a>
                     <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 whitespace-nowrap">Рекомендации</a>
+                    <a *ngIf="isAdmin" routerLink="admin" href="" class="px-4 py-2 block text-red-500 hover:text-red-800 whitespace-nowrap ">Admin</a>
                     <hr class="border-t mx-2 border-grey-ligght">
-                    <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500">Выход</a>
+                    <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 " (click)="logout()">Выход</a>
                 </div>
-            </div> -->
+            </div>
+
+
+            
 
             <button *ngIf="!isAuth"
                 class="inline-flex items-center bg-gray-100 border-0 py px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
@@ -50,15 +55,17 @@
                 </svg>
             </button>
 
-            <button *ngIf="isAuth" (click)="logout()"
+            <!-- <button *ngIf="isAuth" (click)="logout()"
                 class="inline-flex items-center bg-gray-100 border-0 py px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
                 >Выйти
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
-            </button>
+            </button> -->
         </div>
+
+        
 
        
 
@@ -73,6 +80,7 @@
 
     </div>
 </header>
+
 
 
 
