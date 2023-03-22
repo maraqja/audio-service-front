@@ -4,6 +4,7 @@ import { Album } from '../../interfaces/album.interface';
 import { Artist } from '../../interfaces/artist.interface';
 import { Track } from '../../interfaces/track.interface';
 import { AuthService } from '../../services/auth.service';
+import { InteractionsService } from '../../services/interactions.service';
 
 @Component({
   selector: 'app-track',
@@ -30,7 +31,8 @@ export class TrackComponent {
 
   constructor(
     private fileService: FileService,
-    private authService: AuthService
+    private authService: AuthService,
+    private interactionsService: InteractionsService
   ) {
 
   }
@@ -45,13 +47,19 @@ export class TrackComponent {
     return artists.map(artist => artist.name)
   }
 
-  togglePlay(id: any) {
-    if (this.selectedTrack != id) {
+  listen(userId: string, trackId: string) {
+    this.interactionsService.listen(userId, trackId)
+  }
+
+  togglePlay(trackId: any) {
+    if (this.selectedTrack != trackId) {
       this.isPlayed = false
+      // console.log('play')
+      this.interactionsService.listen(this.userId, trackId).subscribe()
     }
-    this.selectedTrack = id
+    this.selectedTrack = trackId
     this.isPlayed = !this.isPlayed
-    console.log(this.isPlayed, this.selectedTrack)
+    // console.log(this.isPlayed, this.selectedTrack)
   }
 
   test() {
