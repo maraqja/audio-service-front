@@ -28,7 +28,6 @@ export class AlbumsComponent {
       albums.forEach((album) => { // тут получаем развернутую инфу по альбомам (т.е. с треками, т.к. исполнители были итак доступны) и используем ее
           this.trackService.getTracksByAlbumId(album._id as string).subscribe((albumExtended: any) => {
             console.log(albumExtended[0]) // чет приходит ответ в виде массива, хотя должен в виде объекта простого
-            console.log(albumExtended)
             this.albums.push(albumExtended[0])
           })
       })
