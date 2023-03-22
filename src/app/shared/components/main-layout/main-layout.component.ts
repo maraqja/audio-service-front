@@ -12,8 +12,10 @@ export class MainLayoutComponent {
   isAuth = false;
   isAdmin = false;
 
-  constructor(private authService: AuthService,
-    private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {}
 
   ngOnInit() {
     this.isAuth = this.authService.isAuth()

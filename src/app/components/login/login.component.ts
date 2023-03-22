@@ -42,7 +42,9 @@ export class LoginComponent {
       this.form.reset()
       this.router.navigate([''])
       this.submited = false
+      this.authService.setFavoriteTracks()
       window.location.reload()
+
     })
   }
 }

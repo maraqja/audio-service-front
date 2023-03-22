@@ -3,6 +3,7 @@ import { FileService } from 'src/app/admin/shared/services/file.service';
 import { Album } from '../../interfaces/album.interface';
 import { Artist } from '../../interfaces/artist.interface';
 import { Track } from '../../interfaces/track.interface';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-track',
@@ -23,11 +24,21 @@ export class TrackComponent {
   isPlayed = false;
   selectedTrack = 0;
 
+  userId: string = ''
+
 
 
   constructor(
-    private fileService: FileService
-  ) {}
+    private fileService: FileService,
+    private authService: AuthService
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.userId = this.authService.getUserId()
+    console.log(this.userId)
+  }
 
 
   getArtistsNames(artists: Artist[] | any[]) {
@@ -46,6 +57,14 @@ export class TrackComponent {
   test() {
     console.log(this.tracks)
     console.log(this.album)
+  }
+
+  addToFavorites(userId: string, trackId: string) {
+    this.authService.pushToFavoriteTracks(userId, trackId).subscribe((res) => {
+      console.log(res)
+    }, (error) => {
+      console.log('THIS TRACK ALREADY IN YOUR FAVORITE LIST')
+    })
   }
 
 

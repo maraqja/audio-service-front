@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { TrackComponent } from './shared/components/track/track.component';
+import { UserLibraryComponent } from './components/user-library/user-library.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TrackComponent } from './shared/components/track/track.component';
     AlbumsComponent,
     AlbumPageComponent,
     AudioPlayerComponent,
-    TrackComponent
+    TrackComponent,
+    UserLibraryComponent
   ],
   imports: [
     BrowserModule,

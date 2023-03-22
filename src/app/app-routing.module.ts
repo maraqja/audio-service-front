@@ -7,6 +7,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TracksComponent } from './components/tracks/tracks.component';
+import { UserLibraryComponent } from './components/user-library/user-library.component';
 import { AudioPlayerComponent } from './shared/components/audio-player/audio-player.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path: 'albums', component: AlbumsComponent, canActivate: [AuthGuard]},
     {path: 'albums/:id', component: AlbumPageComponent, canActivate: [AuthGuard]},
     {path: 'tracks', component: TracksComponent, canActivate: [AuthGuard]},
+    {path: 'user_library', component: UserLibraryComponent, canActivate: [AuthGuard]},
     {path: 'player', component: AudioPlayerComponent, canActivate: [AuthGuard]}, // удалить
     {
       path:'admin', loadChildren:  () => import('./admin/admin.module').then(x => x.AdminModule) 
