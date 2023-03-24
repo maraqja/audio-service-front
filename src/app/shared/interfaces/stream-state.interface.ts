@@ -6,6 +6,7 @@ export interface StreamState {
     currentTime: number | undefined;
     canplay: boolean;
     error: boolean;
+    trackId: string;
     trackName: string;
     artistNames: string[];
 }

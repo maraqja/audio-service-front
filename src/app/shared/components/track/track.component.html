@@ -52,7 +52,12 @@
 </div>
 
 
-<app-audio-player [tracks]="tracks" [album]="album" [trackIndex]="selectedIndex" *ngIf="isPlayed"></app-audio-player>
+<app-audio-player *ngIf="isPlayed || selectedTrack"
+[tracks]="tracks" [album]="album" [trackIndex]="selectedIndex" [isPlayed]="isPlayed" [selectedTrack]="selectedTrack"
+(onPauseOrPlay)="togglePlayer()"
+(onTrackChange)="changeTrackFromPlayer($event)"
+(onIndexChange)="changeIndexFromPlayer($event)"
+></app-audio-player>
 
 
 

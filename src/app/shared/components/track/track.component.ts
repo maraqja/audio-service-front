@@ -45,6 +45,8 @@ export class TrackComponent {
   }
 
 
+
+
   getArtistsNames(artists: Artist[] | any[]) {
     return artists.map(artist => artist.name)
   }
@@ -76,6 +78,18 @@ export class TrackComponent {
     })
   }
 
+
+  togglePlayer() {
+   this.isPlayed = !this.isPlayed
+  }
+
+  changeTrackFromPlayer(trackId:any) {
+    this.selectedTrack = trackId
+  }
+
+  changeIndexFromPlayer(index: any) {
+    this.selectedIndex = index
+  }
 
 
 

@@ -30,8 +30,9 @@ export class AudioService {
     currentTime: undefined,
     canplay: false,
     error: false,
-    trackName: 'string',
-    artistNames: []
+    trackName: '',
+    artistNames: [],
+    trackId: ''
   };
 
   constructor() { }
@@ -48,7 +49,7 @@ export class AudioService {
       this.audioObj.play();
 
       const handler = (event: Event) => {
-        this.updateStateEvents(event, track.name, track.artists);
+        this.updateStateEvents(event, track.name, track.artists, track.trackId);
         // console.log(event)
         observer.next(event);
       };
@@ -115,7 +116,7 @@ export class AudioService {
   );
 
 
-  private updateStateEvents(event: Event, trackName: string, artists: any[]): void {
+  private updateStateEvents(event: Event, trackName: string, artists: any[], trackId: string): void {
     switch (event.type) {
       case 'canplay':
         this.state.duration = this.audioObj.duration;
@@ -124,6 +125,7 @@ export class AudioService {
         break;
       case 'playing':
         this.state.playing = true;
+        this.state.trackId = trackId
         this.state.trackName = trackName,
         this.state.artistNames = artists.map(artist => artist.name)
         break;
@@ -152,6 +154,7 @@ export class AudioService {
       currentTime: undefined,
       canplay: false,
       error: false,
+      trackId: '',
       trackName: '',
       artistNames: []
     };

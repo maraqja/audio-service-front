@@ -1,4 +1,4 @@
-<div  class="fixed bottom-0 left-0 w-full bg-gray-900 z-10 text-gray-200">
+<div *ngIf="files" class="fixed bottom-0 left-0 w-full bg-gray-900 z-10 text-gray-200">
     <div class="container mx-auto pt-6 flex text-gray-200">
         <span>{{ state.readableCurrentTime }}</span>
         <input type="range" name="range" class="w-full mx-3 outline-none appearance-none rounded-lg h-4 accent-indigo-500"  
@@ -13,6 +13,10 @@
                     <span class="mr-3 text-sm"> {{ state.artistNames }} </span>
                     <!-- <span>
                         {{state | json}}
+                    </span>
+
+                    <span>
+                        {{isPlayed}}
                     </span> -->
         </div>
 
