@@ -1,10 +1,10 @@
 
 <div class="flex flex-col">
-    <button *ngFor="let track of tracks | searchTracks: search" (click)="test()"
+    <button *ngFor="let track of tracks | searchTracks: search; let i = index" 
         class="bg-gray-100 py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none border-2 mb-2 "
         [ngClass]="{'border-indigo-500': selectedTrack === track._id}">
         <div class="flex ">
-            <button (click)="togglePlay(track._id)">
+            <button (click)="togglePlay(track._id, i)">
                 <svg *ngIf="selectedTrack != track._id || (selectedTrack == track._id && !isPlayed)"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black"
                     class="w-6 h-6 fill-gray-900 my-auto">
@@ -18,7 +18,7 @@
                 </svg>
             </button>
     
-    
+            <!-- <span>{{i}}</span> -->
             <span class="ml-4 flex items-start flex-col leading-none">
                 <span *ngIf="track.album; else fromAlbumPage;" class="text-sm text-gray-600 mb-1 font-normal">
                     {{ getArtistsNames(track.album.artists)}}
@@ -46,8 +46,13 @@
             </button>
         </div>
     </button>
+        
+    
 
 </div>
+
+
+<app-audio-player [tracks]="tracks" [album]="album" [trackIndex]="selectedIndex" *ngIf="isPlayed"></app-audio-player>
 
 
 

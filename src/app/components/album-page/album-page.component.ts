@@ -36,6 +36,8 @@ export class AlbumPageComponent {
   }
 
 
+
+
   getImage(filePath: string) {
     return this.fileService.getStaticSrc(filePath)
   }

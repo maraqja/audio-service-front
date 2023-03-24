@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 
@@ -28,5 +28,10 @@ export class FileService {
         return resolve(audio.duration)
       };
     })
+  }
+
+  getAudioStreamableURL(filePath: string) {
+    console.log(`${environment.apiUrl}/files/stream?audio=${filePath}`)
+    return `${environment.apiUrl}/files/stream?audio=${filePath}`
   }
 }

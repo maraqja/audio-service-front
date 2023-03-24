@@ -25,6 +25,8 @@ export class TrackComponent {
   isPlayed = false;
   selectedTrack = 0;
 
+  selectedIndex = 0; // для передачи в компонент плеера (чтобы начать проигрывать трек с определенным индексом из массива треков)
+
   userId: string = ''
 
 
@@ -51,7 +53,7 @@ export class TrackComponent {
     this.interactionsService.listen(userId, trackId)
   }
 
-  togglePlay(trackId: any) {
+  togglePlay(trackId: any, index: number) {
     if (this.selectedTrack != trackId) {
       this.isPlayed = false
       // console.log('play')
@@ -59,13 +61,12 @@ export class TrackComponent {
     }
     this.selectedTrack = trackId
     this.isPlayed = !this.isPlayed
+
+    this.selectedIndex = index;
     // console.log(this.isPlayed, this.selectedTrack)
   }
 
-  test() {
-    console.log(this.tracks)
-    console.log(this.album)
-  }
+
 
   addToFavorites(userId: string, trackId: string) {
     this.authService.pushToFavoriteTracks(userId, trackId).subscribe((res) => {
@@ -74,6 +75,10 @@ export class TrackComponent {
       console.log('THIS TRACK ALREADY IN YOUR FAVORITE LIST')
     })
   }
+
+
+
+
 
 
 
