@@ -1,5 +1,3 @@
-import { Artist } from "./artist.interface";
-
 export interface Album{
     _id?: string;
     title: string;

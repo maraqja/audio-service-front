@@ -22,6 +22,7 @@ export class AudioPlayerComponent {
   @Output() onPauseOrPlay: EventEmitter<any> = new EventEmitter()
   @Output() onTrackChange: EventEmitter<any> = new EventEmitter()
   @Output() onIndexChange: EventEmitter<any> = new EventEmitter()
+  @Output() onStop: EventEmitter<any> = new EventEmitter()
 
 
 
@@ -37,6 +38,7 @@ export class AudioPlayerComponent {
 
   ngOnInit() {
     console.log(this.tracks)
+
     // console.log(this.album.artists)
 
     this.audioService.getState()
@@ -66,13 +68,20 @@ export class AudioPlayerComponent {
 
 
   ngOnChanges() {
-
+    console.log(this.selectedTrack)
+    
     if (this.files.length && !this.isPlayed && this.selectedTrack === this.state.trackId) {
       this.audioService.pause();
-    } else if (this.files.length && this.isPlayed && this.selectedTrack === this.state.trackId) { // т.к. вызывается раньше ngOnInit выдает ошибку, проверяем на условие, что получены files, которые получаем только в ngOnInit
+    } else if (!this.isPlayed) {
+      this.audioService.pause()
+    }
+    else if (this.files.length && this.isPlayed && this.selectedTrack === this.state.trackId) { // т.к. вызывается раньше ngOnInit выдает ошибку, проверяем на условие, что получены files, которые получаем только в ngOnInit
       this.audioService.play();
     } else if (this.files.length && this.isPlayed && this.selectedTrack !== this.state.trackId) { // на другой трек
-      setTimeout(() => {      
+
+
+
+      setTimeout(() => {       // kostil pizdec...
         this.openFile(this.files[this.trackIndex], this.trackIndex)
       }, 100);
 
@@ -114,6 +123,7 @@ export class AudioPlayerComponent {
 
   stop() {
     this.audioService.stop();
+    this.onStop.emit()
   }
 
   next() {

@@ -1,0 +1,55 @@
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap w-full mb-20">
+            <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Рекомендации</h1>
+                <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+            </div>
+            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn
+                asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man
+                bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+        </div>
+
+
+
+        <div class="flex flex-wrap -m-4 justify-center">
+
+            <div *ngFor="let playlist of playlists " class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <button (click)="togglePlay(playlist._id)">
+                        <svg *ngIf="selectedPlaylistId != playlist._id || (selectedPlaylistId == playlist._id && !isPlayed)" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="current" 
+                            class="absolute w-20 h-20 fill-gray-500 ">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                        </svg>
+
+                        <svg *ngIf="selectedPlaylistId == playlist._id && isPlayed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="5.5" stroke="#6b7280" 
+                            class="absolute w-20 h-20 fill-gray-500 ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                        </svg>
+                        
+                        <!-- <svg *ngIf="selectedTrack == track._id && isPlayed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="5.5" stroke="black" class="w-6 h-6 fill-gray-900 my-auto">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                        </svg> -->
+                        <img class=" h-80 rounded w-full object-cover object-center mb-6" [src]="getImgSrc(playlist.image)" alt="content">
+                        
+                    </button>
+                   
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{ playlist.name }} </h2>
+                    <p class="leading-relaxed text-base"> {{ playlist.description }} </p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+
+
+
+<app-audio-player *ngIf="isPlayed || selectedPlaylistId" [tracks]="selectedPlaylist.tracks" [selectedTrack]="selectedPlaylist.tracks[0]"
+    [isPlayed]="isPlayed" (onPauseOrPlay)="togglePlayer()" (onStop)="close()"></app-audio-player>

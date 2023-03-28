@@ -23,7 +23,7 @@ export class TrackComponent {
 
 
   isPlayed = false;
-  selectedTrack = 0;
+  selectedTrack = null;
 
   selectedIndex = 0; // для передачи в компонент плеера (чтобы начать проигрывать трек с определенным индексом из массива треков)
 
@@ -66,6 +66,11 @@ export class TrackComponent {
 
     this.selectedIndex = index;
     // console.log(this.isPlayed, this.selectedTrack)
+  }
+
+  close() {
+    this.isPlayed = false
+    this.selectedTrack = null
   }
 
 

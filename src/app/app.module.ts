@@ -17,6 +17,7 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { TrackComponent } from './shared/components/track/track.component';
 import { UserLibraryComponent } from './components/user-library/user-library.component';
+import { RecommendedPageComponent } from './components/recommended-page/recommended-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserLibraryComponent } from './components/user-library/user-library.com
     AlbumPageComponent,
     AudioPlayerComponent,
     TrackComponent,
-    UserLibraryComponent
+    UserLibraryComponent,
+    RecommendedPageComponent
   ],
   imports: [
     BrowserModule,

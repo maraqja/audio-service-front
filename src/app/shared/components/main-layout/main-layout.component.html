@@ -9,7 +9,7 @@
             <a href="" routerLink="artists" class="mr-5 hover:text-indigo-500">Исполнители</a>
             <a href="" routerLink="albums" class="mr-5 hover:text-indigo-500">Альбомы</a>
             <a href="" routerLink="tracks" class="mr-5 hover:text-indigo-500">Треки</a>
-            <a href="" class="hover:text-indigo-500">Плейлисты</a> <p class="text-xs font-semibold mt-6 -ml-12 text-red-600 animate-pulse">new</p>
+            <a href="" class="hover:text-indigo-500">Плейлисты</a> <p class="text-xs font-semibold mt-5 -ml-12 text-red-600 animate-pulse">new</p>
         </nav>
         <a href=""
             class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
@@ -35,7 +35,7 @@
                 <div 
                     class="items-center absolute border border-t-0 rounded-b-lg p-1 bg-white invisible group-hover:visible w-fit right-0">
                     <a routerLink="/user_library" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 whitespace-nowrap">Моя библиотека</a>
-                    <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 whitespace-nowrap">Рекомендации</a>
+                    <a routerLink="/recomended" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 whitespace-nowrap">Рекомендации</a>
                     <a *ngIf="isAdmin" routerLink="admin" href="" class="px-4 py-2 block text-red-500 hover:text-red-800 whitespace-nowrap ">Admin</a>
                     <hr class="border-t mx-2 border-grey-ligght">
                     <a href="#" class="px-4 py-2 block text-gray-600 hover:text-indigo-500 " (click)="logout()">Выход</a>
@@ -89,7 +89,7 @@
 
 
 
-<footer class="text-gray-600 body-font sticky top-[100vh] w-screen">
+<footer class="text-gray-600 body-font sticky top-[100vh] w-full">
     <div class="container px-5 py-10 mx-auto flex items-center sm:flex-row flex-col">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
