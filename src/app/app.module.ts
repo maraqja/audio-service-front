@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { TrackComponent } from './shared/components/track/track.component';
 import { UserLibraryComponent } from './components/user-library/user-library.component';
 import { RecommendedPageComponent } from './components/recommended-page/recommended-page.component';
+import { PlaylistsComponent } from './components/playlists/playlists.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RecommendedPageComponent } from './components/recommended-page/recommen
     AudioPlayerComponent,
     TrackComponent,
     UserLibraryComponent,
-    RecommendedPageComponent
+    RecommendedPageComponent,
+    PlaylistsComponent
   ],
   imports: [
     BrowserModule,

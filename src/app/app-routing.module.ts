@@ -5,6 +5,7 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { PlaylistsComponent } from './components/playlists/playlists.component';
 import { RecommendedPageComponent } from './components/recommended-page/recommended-page.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TracksComponent } from './components/tracks/tracks.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path: 'tracks', component: TracksComponent, canActivate: [AuthGuard]},
     {path: 'user_library', component: UserLibraryComponent, canActivate: [AuthGuard]},
     {path: 'recomended', component: RecommendedPageComponent, canActivate: [AuthGuard]},
+    {path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuard]},
     {
       path:'admin', loadChildren:  () => import('./admin/admin.module').then(x => x.AdminModule) 
     }
