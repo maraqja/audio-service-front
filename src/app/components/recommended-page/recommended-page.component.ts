@@ -14,6 +14,7 @@ export class RecommendedPageComponent {
 
   playlists: Playlist[] = []
   aSub: Subscription = new Subscription()
+  uSub: Subscription = new Subscription()
 
   selectedPlaylistId: any
   isPlayed: boolean = false
@@ -28,16 +29,18 @@ export class RecommendedPageComponent {
 
   
   ngOnInit() {
-    this.aSub = this.playlistService.getAll().subscribe( (playlists) => {
+    
+    this.uSub = this.playlistService.updateRecs(this.authService.getUserId()).subscribe((recs) => { // не можем просто обновить и получить, т.к. при обновлении возвращаются не populate плейлисты (без артистов итд)
+      this.aSub = this.playlistService.getAll().subscribe( (playlists) => {
       playlists.forEach((playlist) => {
         if (playlist.source === 'recommender' && playlist.owner === this.authService.getUserId()) {
           this.playlists.push(playlist)
         }
       })
-      
       console.log(this.playlists)
     })
-    
+      console.log(recs)
+    })
   }
 
 
@@ -70,6 +73,9 @@ export class RecommendedPageComponent {
   ngOnDestroy() {
     if (this.aSub) {
       this.aSub.unsubscribe()
+    }
+    if (this.uSub) {
+      this.uSub.unsubscribe()
     }
   }
 

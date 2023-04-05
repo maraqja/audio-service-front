@@ -39,4 +39,8 @@ export class PlaylistService {
       return <Playlist>res
     }))
   }
+
+  updateRecs(userId: string): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(`${environment.apiUrl}/recommender/${userId}`)
+  }
 }

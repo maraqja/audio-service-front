@@ -13,7 +13,7 @@
         <div class="flex flex-wrap -m-4 justify-center">
 
             <div *ngFor="let playlist of playlists " class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
-                <div class="bg-gray-100 p-6 rounded-lg">
+                <div class="bg-gray-100 p-6 rounded-lg ">
                     <button (click)="togglePlay(playlist._id)">
                         <svg *ngIf="selectedPlaylistId != playlist._id || (selectedPlaylistId == playlist._id && !isPlayed)" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="current" 
@@ -35,9 +35,11 @@
                         <img class=" h-80 rounded w-full object-cover object-center mb-6" [src]="getImgSrc(playlist.image)" alt="content">
                         
                     </button>
-                   
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{ playlist.name }} </h2>
-                    <p class="leading-relaxed text-base"> {{ playlist.description }} </p>
+                    <div class="h-48">
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{ playlist.name }} </h2>
+                        <p class="leading-relaxed text-base"> {{ playlist.description }} </p>
+                    </div>
+
                 </div>
             </div>
 
