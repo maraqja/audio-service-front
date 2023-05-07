@@ -17,6 +17,20 @@
                                 название</small>
                         </div>
                     </div>
+
+
+                    <div class="relative mb-4">
+                        <label for="description" class="leading-7 text-sm text-gray-600">Описание</label>
+                        <textarea cols="30" rows="10" id="description" name="description" formControlName="description"
+                            [ngClass]="{'border-red-500': form.get('description')?.touched && form.get('description')?.invalid}"
+                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        </textarea>
+                    
+                        <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+                            <small *ngIf="this.form.get('description')?.errors?.['required']" class="text-red-500">Введите
+                                описание</small>
+                        </div>
+                    </div>
                 
                     <div class="relative mb-4 text-gray-700">
                         <label for="genre" class="leading-7 text-sm text-gray-600">Жанры *</label>

@@ -49,6 +49,7 @@ export class EditTrackComponent {
       this.selectedAlbum = (<Album>this.track.album)._id as string
       this.form = new FormGroup({
         name: new FormControl(this.track.name, [Validators.required]),
+        description: new FormControl(this.track.description, [Validators.required]),
         file: new FormControl(null, [Validators.nullValidator, requiredFileType('audio')]),
         genre: new FormControl(this.track.genre, [Validators.required]),
         album: new FormControl(this.track.album, [Validators.required]),
@@ -74,6 +75,7 @@ export class EditTrackComponent {
     }
     if (
       this.form.value.name === this.track.name &&
+       this.form.value.description === this.track.description &&
       this.form.value.file === null &&
       this.form.value.genre === this.track.genre &&
       this.form.value.album === this.track.album &&
@@ -87,6 +89,7 @@ export class EditTrackComponent {
     if (this.form.value.file === null) {
       const track: Track = {
         name: this.form.value.name,
+        description: this.form.value.description,
         duration: this.track.duration,
         file: this.track.file,
         genre: this.form.value.genre,
@@ -110,6 +113,7 @@ export class EditTrackComponent {
       this.fileService.uploadFile(this.form.value.file as File).subscribe((res: any ) => {
         const track: Track = {
           name: this.form.value.name,
+          description: this.form.value.description,
           duration: audioDuration,
           file: res.url,
           genre: this.form.value.genre,

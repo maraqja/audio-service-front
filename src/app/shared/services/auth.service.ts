@@ -87,7 +87,7 @@ export class AuthService {
   pushToFavoriteTracks(userId: string, trackId: string) {
     const lcTracks = this.favoriteTracks
     if (lcTracks.includes(trackId)) { // нельзя добавить уже добавленный трек
-      return throwError(() => new Error('MYERRORAlready in favorite'))
+      return throwError(() => new Error('Already in favorite'))
     } else {
       lcTracks.push(trackId)
       this.setFavoriteTracks(lcTracks.flat())

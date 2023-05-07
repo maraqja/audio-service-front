@@ -35,6 +35,7 @@ export class AddTrackComponent {
   ngOnInit(){
       this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
       file: new FormControl(null, [Validators.required, requiredFileType('audio')]),
       genre: new FormControl(null, [Validators.required]),
       album: new FormControl(null, [Validators.required]),
@@ -62,6 +63,7 @@ export class AddTrackComponent {
     this.fileService.uploadFile(this.form.value.file as File).subscribe((res: any ) => {
       const track: Track = {
         name: this.form.value.name,
+        description: this.form.value.description,
         duration: audioDuration,
         file: res.url,
         genre: this.form.value.genre,

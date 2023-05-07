@@ -5,12 +5,15 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Рекомендации</h1>
                 <div class="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Тут представлены плейлисты, сформированные рекомендательной системой совместной фильтрации и контентной фильтрации</p>
+            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Наши алгоритмы машинного обучения анализируют вашу историю прослушиваний и на основе этого составляют плейлисты, которые
+            могут быть интересны для вас. Мы используем множество техник для создания наших плейлистов, чтобы помочь вам
+            открыть новую музыку, которая может привлечь ваше внимание. Мы предлагаем вам персонализированные плейлисты в
+            соответствии с вашими предпочтениями в музыке на основе истории ваших прослушиваний и взаимодействий с треками.</p>
         </div>
 
 
 
-        <div class="flex flex-wrap -m-4 justify-center">
+        <div *ngIf="playlists.length; else noRecs;" class="flex flex-wrap -m-4 justify-center">
 
             <div *ngFor="let playlist of playlists " class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
                 <div class="bg-gray-100 p-6 rounded-lg ">
@@ -53,3 +56,9 @@
 
 <app-audio-player *ngIf="isPlayed || selectedPlaylistId" [tracks]="selectedPlaylist.tracks" [selectedTrack]="selectedPlaylist.tracks[0]"
     [isPlayed]="isPlayed" (onPauseOrPlay)="togglePlayer()" (onStop)="close()"></app-audio-player>
+
+
+<ng-template #noRecs>
+    <p class=" w-full leading-relaxed text-gray-500 text-center">Кажется, ты новенький! Наша система еще не успела собрать данные о твоих вкусах, либо их недостаточно :C</p>
+    <p class=" w-full leading-relaxed text-gray-500 text-center">Возвращайся немного позже, а пока можешь послушать сформированные нашей командой <a routerLink="/playlists" class="text-indigo-500 underline">плейлисты</a></p>
+</ng-template>

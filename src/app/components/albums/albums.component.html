@@ -1,23 +1,24 @@
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-wrap w-full mb-20">
+        <div class="flex flex-wrap w-full mb-10">
             <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Библиотека альбомов</h1>
                 <div class="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn
-                asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man
-                bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Здесь вы найдете широкий выбор альбомов на любой вкус, независимо от предпочтений в жанре музыки. Наши альбомы
+            представляют богатство творчества музыкантов со всего мира и являются настоящей находкой для истинных ценителей музыки.
+            На странице каждого альбома вы найдете подробную информацию о его содержании и исполнителе, а также сможете ознакомится с
+            каждым треком и прослушать его в высоком качестве. Н Мы постоянно обновляем ассортимент наших альбомов и следим за последними новинками музыкального мира, чтобы
+            предложить лучшую музыку нашим поклонникам.</p>
         </div>
 
 
 
-        <div class="relative mr-4 w-full text-left">
+        <div class="relative mr-4 w-full text-left mb-10">
             <label for="hero-field" class="leading-7 text-sm text-gray-600">Поиск</label>
             <input type="text" id="hero-field" name="hero-field" placeholder="Введите название альбома или имя исполнителя..." [(ngModel)]="search"
                 class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div>
-        <p class="text-sm mt-2 text-gray-500 mb-8 w-full">{{search}}</p>
 
 
 
@@ -25,15 +26,19 @@
             
 
 
-            <div *ngFor="let album of albums |  searchAlbums: search;" class="xl:w-1/4 md:w-1/2 p-4 max-w-md">
+            <div *ngFor="let album of albums |  searchAlbums: search;" class="xl:w-1/4 md:w-1/2 p-4 max-w-md ">
                 
-                <div class="bg-gray-100 p-6 rounded-lg">
+                <div class="bg-gray-100 p-6 rounded-lg ">
                     <a [routerLink]="['/albums', album._id]">
                         <img class="h-80 rounded w-full object-cover object-center mb-6"
                             [src]="getImgSrc(album.image)" alt="content">
                     </a>
                     <h3 class="tracking-widest text-xs font-medium title-font"> {{ album.genre }} </h3>
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{album.title }} </h2>
+                    <div class="flex">
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4"> {{album.title }} </h2>
+                        <p *ngIf="album.tracks.length === 1" class="ml-2">[single]</p>
+                    </div>
+                    
                     <p class="leading-relaxed text-base truncate"> {{ album.description }} </p>
                     <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
                         <a [routerLink]="['/albums', album._id]" class="text-indigo-500 font-medium title-font inline-flex items-center">Слушать
@@ -62,25 +67,29 @@
                         </span>
                     </div>
 
-                    <div *ngFor="let artist of album.artists">
-                        <a class="inline-flex items-center">
-                            <img alt="blog" [src]="getImgSrc(artist.image)"
-                                class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                            <span class="flex-grow flex flex-col pl-4">
-                                <span class="title-font font-medium text-gray-900"> {{artist.name}} </span>
-                                <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
-                            </span>
-                        </a>
+                    <div class="h-40">
+                        <div *ngFor="let artist of album.artists" class="py-4">
+                            <a class="inline-flex items-center">
+                                <img alt="blog" [src]="getImgSrc(artist.image)"
+                                    class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                                <span class="flex-grow flex flex-col pl-4">
+                                    <span class="title-font font-medium text-gray-900"> {{artist.name}} </span>
+                                    <span class="text-gray-400 text-xs tracking-widest mt-0.5">Исполнитель</span>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                     
+                    
                 </div>
+                
             </div>
             
 
         </div>
 
 
-
+        
 
 
 

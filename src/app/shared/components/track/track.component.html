@@ -34,7 +34,7 @@
                 <span class="title-font font-medium"> {{ track.name }} </span>
             </span>
             <div class="ml-auto inline-flex items-center justify-center">
-                <span>2:15</span>
+                <span>{{track.duration * 1000 | date:'mm:ss'}}</span>
             </div>
             <button (click)="addToFavorites(userId, track._id)"
                 class="rounded-full w-10 h-10  p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-white ">
